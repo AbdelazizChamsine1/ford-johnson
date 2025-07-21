@@ -15,7 +15,7 @@ int PmergeSort::generateJacobsthal(int n) {
     return curr;
 }
 
-////////////////////////// vector /////////////////////////////////////////////
+/////////////////////////////// vector /////////////////////////////////////////////
 
 void checkDuplicates(const std::vector<int>& data) {
     std::set<int> seen;
@@ -81,15 +81,15 @@ void PmergeSort::run(char** av, std::vector<int>& data) {
         std::string number;
 
         while (std::getline(ss, number, ' ')) {
-            if (!number.empty()) {
-                // Check format: allow only digits or a leading '+'
+            if (!number.empty())
+            {
                 for (std::size_t j = 0; j < number.size(); ++j) {
                     if (!std::isdigit(number[j]) && !(j == 0 && number[j] == '+')) {
                         std::cerr << "Error: Invalid input => " << number << std::endl;
                         exit(1);
                     }
                 }
-                // Convert string to long to catch overflow
+
                 char* end;
                 long value = std::strtol(number.c_str(), &end, 10);
                 if (value > INT_MAX || value < 0) {
@@ -101,9 +101,6 @@ void PmergeSort::run(char** av, std::vector<int>& data) {
         }
     }
     checkDuplicates(data);
-    std::cout << "before:         ";
-    for (std::size_t i = 0; i < data.size(); ++i)
-        std::cout << data[i] << (i + 1 < data.size() ? " " : "\n");
     count_vector = 0;
     data = recursiveSort(data);
 }
@@ -261,7 +258,6 @@ void PmergeSort::run(char** av, std::deque<int>& data) {
 
         while (std::getline(ss, number, ' ')) {
             if (!number.empty()) {
-                // Allow only digits or a leading '+'
                 for (std::size_t j = 0; j < number.size(); ++j) {
                     if (!std::isdigit(number[j]) && !(j == 0 && number[j] == '+')) {
                         std::cerr << "Error: Invalid input => " << number << std::endl;
@@ -269,7 +265,6 @@ void PmergeSort::run(char** av, std::deque<int>& data) {
                     }
                 }
 
-                // Convert to long to catch overflow
                 char* end;
                 long value = std::strtol(number.c_str(), &end, 10);
                 if (value > INT_MAX || value < 0) {
@@ -282,13 +277,7 @@ void PmergeSort::run(char** av, std::deque<int>& data) {
             }
         }
     }
-
     checkDuplicates(data);
-
-    std::cout << "before:         ";
-    for (std::size_t i = 0; i < data.size(); ++i)
-        std::cout << data[i] << (i + 1 < data.size() ? " " : "\n");
-
     count_vector = 0;
     data = recursiveSort(data);
 }
