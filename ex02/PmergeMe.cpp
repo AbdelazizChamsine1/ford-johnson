@@ -3,21 +3,10 @@
 
 int count_vector = 0;
 
-int PmergeSort::JacobsthalSequence(int n) {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
-    int prev2 = 0, prev1 = 1, curr = 0;
-    for (int i = 2; i <= n; ++i) {
-        curr = prev1 + 2 * prev2;
-        prev2 = prev1;
-        prev1 = curr;
-    }
-    return curr;
-}
-
 /////////////////////////////// vector /////////////////////////////////////////////
 
-void checkDuplicates(const std::vector<int>& data) {
+void checkDuplicates(const std::vector<int>& data)
+{
     std::set<int> seen;
 
     for (std::size_t i = 0; i < data.size(); ++i) {
@@ -29,7 +18,8 @@ void checkDuplicates(const std::vector<int>& data) {
     }
 }
 
-std::vector<int> PmergeSort::recursiveSort(std::vector<int>& data) {
+std::vector<int> PmergeSort::recursiveSort(std::vector<int>& data)
+{
     std::vector<int> result;
     if (data.empty()) return result;
     if (data.size() == 1) return data;
@@ -74,7 +64,8 @@ std::vector<int> PmergeSort::recursiveSort(std::vector<int>& data) {
     return new_main;
 }
 
-void PmergeSort::run(char** av, std::vector<int>& data) {
+void PmergeSort::run(char** av, std::vector<int>& data)
+{
     for (int i = 1; av[i]; ++i) {
         std::string arg = av[i];
         std::stringstream ss(arg);
@@ -105,28 +96,8 @@ void PmergeSort::run(char** av, std::vector<int>& data) {
     data = recursiveSort(data);
 }
 
-// int PmergeSort::JacobsthalSequence(int n) {
-//     if (n == 0) return 0;
-//     if (n == 1) return 1;
-//     int prev2 = 0, prev1 = 1, curr = 0;
-//     for (int i = 2; i <= n; ++i) {
-//         curr = prev1 + 2 * prev2;
-//         prev2 = prev1;
-//         prev1 = curr;
-//     }
-//     return curr;
-// }
-// std::vector<int> PmergeSort::generateJacobIndices(int size) {
-//     std::vector<int> jacob;
-//     int index = 3;
-//     while (JacobsthalSequence(index) <= size) {
-//         jacob.push_back(JacobsthalSequence(index));
-//         ++index;
-//     }
-//     return jacob;
-// }
-
-std::vector<int> PmergeSort::generateJacobIndices(int size) {
+std::vector<int> PmergeSort::generateJacobIndices(int size)
+{
     std::vector<int> jacob;
     int prev2 = 0, prev1 = 1, curr = 0;
     int index = 2;
@@ -146,7 +117,8 @@ std::vector<int> PmergeSort::generateJacobIndices(int size) {
 }
 
 
-void PmergeSort::editIndices(std::vector<int>& jacob, std::vector<int> pend) {
+void PmergeSort::editIndices(std::vector<int>& jacob, std::vector<int> pend)
+{
     std::vector<int> temp, pushed;
     for (std::size_t i = 0; i < jacob.size(); ++i) {
         int x = jacob[i];
@@ -178,7 +150,8 @@ void PmergeSort::editIndices(std::vector<int>& jacob, std::vector<int> pend) {
     }
 }
 
-void PmergeSort::insertPend(std::vector<int>& main, std::vector<int>& pend, std::vector<int>& jacob) {
+void PmergeSort::insertPend(std::vector<int>& main, std::vector<int>& pend, std::vector<int>& jacob)
+{
     int high = 3;
     main.insert(main.begin(), pend[0]);
 
@@ -193,7 +166,8 @@ void PmergeSort::insertPend(std::vector<int>& main, std::vector<int>& pend, std:
     }
 }
 
-int PmergeSort::binarySearch(std::vector<int>& main, int value, int high) {
+int PmergeSort::binarySearch(std::vector<int>& main, int value, int high)
+{
     if (main.empty())
         return 0;
 
@@ -215,7 +189,8 @@ int PmergeSort::binarySearch(std::vector<int>& main, int value, int high) {
     return (low < static_cast<int>(main.size()) && value < main[low]) ? low : main.size();
 }
 
-void PmergeSort::insertSort(std::vector<int>& main, std::vector<int>& pend) {
+void PmergeSort::insertSort(std::vector<int>& main, std::vector<int>& pend)
+{
     std::vector<int> jacob = generateJacobIndices(pend.size());
     editIndices(jacob, pend);
     insertPend(main, pend, jacob);
@@ -223,7 +198,8 @@ void PmergeSort::insertSort(std::vector<int>& main, std::vector<int>& pend) {
 
 ////////////////////////////// DEQUE /////////////////////////////////////////////////
 
-void checkDuplicates(const std::deque<int>& data) {
+void checkDuplicates(const std::deque<int>& data)
+{
     std::set<int> seen;
 
     for (std::size_t i = 0; i < data.size(); ++i) {
@@ -235,7 +211,8 @@ void checkDuplicates(const std::deque<int>& data) {
     }
 }
 
-std::deque<int> PmergeSort::recursiveSort(std::deque<int>& data) {
+std::deque<int> PmergeSort::recursiveSort(std::deque<int>& data)
+{
     std::deque<int> result;
     if (data.empty()) return result;
     if (data.size() == 1) return data;
@@ -280,7 +257,8 @@ std::deque<int> PmergeSort::recursiveSort(std::deque<int>& data) {
     return new_main;
 }
 
-void PmergeSort::run(char** av, std::deque<int>& data) {
+void PmergeSort::run(char** av, std::deque<int>& data)
+{
     for (int i = 1; av[i]; ++i) {
         std::string arg = av[i];
         std::stringstream ss(arg);
@@ -312,17 +290,8 @@ void PmergeSort::run(char** av, std::deque<int>& data) {
     data = recursiveSort(data);
 }
 
-// std::deque<int> PmergeSort::generateJacobIndicesDeque(int size) {
-//     std::deque<int> jacob;
-//     int index = 3;
-//     while (JacobsthalSequence(index) <= size) {
-//         jacob.push_back(JacobsthalSequence(index));
-//         ++index;
-//     }
-//     return jacob;
-// }
-
-std::deque<int> PmergeSort::generateJacobIndicesDeque(int size) {
+std::deque<int> PmergeSort::generateJacobIndicesDeque(int size)
+{
     std::deque<int> jacob;
     int prev2 = 0, prev1 = 1, curr = 0;
     int index = 2;
@@ -341,7 +310,8 @@ std::deque<int> PmergeSort::generateJacobIndicesDeque(int size) {
     return jacob;
 }
 
-void PmergeSort::editIndices(std::deque<int>& jacob, std::deque<int> pend) {
+void PmergeSort::editIndices(std::deque<int>& jacob, std::deque<int> pend)
+{
     std::deque<int> temp, pushed;
     for (std::size_t i = 0; i < jacob.size(); ++i) {
         int x = jacob[i];
@@ -373,7 +343,8 @@ void PmergeSort::editIndices(std::deque<int>& jacob, std::deque<int> pend) {
     }
 }
 
-void PmergeSort::insertPend(std::deque<int>& main, std::deque<int>& pend, std::deque<int>& jacob) {
+void PmergeSort::insertPend(std::deque<int>& main, std::deque<int>& pend, std::deque<int>& jacob)
+{
     int high = 3;
     main.insert(main.begin(), pend[0]);
 
@@ -388,7 +359,8 @@ void PmergeSort::insertPend(std::deque<int>& main, std::deque<int>& pend, std::d
     }
 }
 
-int PmergeSort::binarySearch(std::deque<int>& main, int value, int high) {
+int PmergeSort::binarySearch(std::deque<int>& main, int value, int high) 
+{
     if (main.empty())
         return 0;
 
@@ -396,7 +368,8 @@ int PmergeSort::binarySearch(std::deque<int>& main, int value, int high) {
     if (high >= static_cast<int>(main.size()))
         high = static_cast<int>(main.size()) - 1;
 
-    while (low <= high) {
+    while (low <= high)
+    {
         int mid = (low + high) / 2;
         count_vector++;
         if (main[mid] == value)
@@ -410,7 +383,8 @@ int PmergeSort::binarySearch(std::deque<int>& main, int value, int high) {
     return (low < static_cast<int>(main.size()) && value < main[low]) ? low : main.size();
 }
 
-void PmergeSort::insertSort(std::deque<int>& main, std::deque<int>& pend) {
+void PmergeSort::insertSort(std::deque<int>& main, std::deque<int>& pend)
+{
     std::deque<int> jacob = generateJacobIndicesDeque(pend.size());
     editIndices(jacob, pend);
     insertPend(main, pend, jacob);

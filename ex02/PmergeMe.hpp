@@ -21,7 +21,7 @@ public:
 private:
     static int JacobsthalSequence(int n);
 
-    // Vector versions
+    // Vector
     static std::vector<int> recursiveSort(std::vector<int>& data);
     static void insertSort(std::vector<int>& main, std::vector<int>& pend);
     static std::vector<int> generateJacobIndices(int size);
@@ -29,7 +29,7 @@ private:
     static void insertPend(std::vector<int>& main, std::vector<int>& pend, std::vector<int>& jacob);
     static int binarySearch(std::vector<int>& main, int value, int high);
 
-    // Deque versions
+    // Deque
     static std::deque<int> recursiveSort(std::deque<int>& data);
     static void insertSort(std::deque<int>& main, std::deque<int>& pend);
     static std::deque<int> generateJacobIndicesDeque(int size);

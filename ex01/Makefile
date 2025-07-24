@@ -1,4 +1,3 @@
-# Makefile
 NAME = RPN
 
 CXX = c++

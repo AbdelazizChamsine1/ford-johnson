@@ -1,4 +1,3 @@
-// main.cpp
 #include "RPN.hpp"
 #include <iostream>
 
