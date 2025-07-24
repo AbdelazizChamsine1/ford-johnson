@@ -3,7 +3,7 @@
 
 int count_vector = 0;
 
-int PmergeSort::generateJacobsthal(int n) {
+int PmergeSort::JacobsthalSequence(int n) {
     if (n == 0) return 0;
     if (n == 1) return 1;
     int prev2 = 0, prev1 = 1, curr = 0;
@@ -105,16 +105,46 @@ void PmergeSort::run(char** av, std::vector<int>& data) {
     data = recursiveSort(data);
 }
 
+// int PmergeSort::JacobsthalSequence(int n) {
+//     if (n == 0) return 0;
+//     if (n == 1) return 1;
+//     int prev2 = 0, prev1 = 1, curr = 0;
+//     for (int i = 2; i <= n; ++i) {
+//         curr = prev1 + 2 * prev2;
+//         prev2 = prev1;
+//         prev1 = curr;
+//     }
+//     return curr;
+// }
+// std::vector<int> PmergeSort::generateJacobIndices(int size) {
+//     std::vector<int> jacob;
+//     int index = 3;
+//     while (JacobsthalSequence(index) <= size) {
+//         jacob.push_back(JacobsthalSequence(index));
+//         ++index;
+//     }
+//     return jacob;
+// }
 
 std::vector<int> PmergeSort::generateJacobIndices(int size) {
     std::vector<int> jacob;
-    int index = 3;
-    while (generateJacobsthal(index) <= size) {
-        jacob.push_back(generateJacobsthal(index));
+    int prev2 = 0, prev1 = 1, curr = 0;
+    int index = 2;
+
+    // Start from index = 3, so precompute the first two
+    while (true) {
+        curr = prev1 + 2 * prev2;
+        if (curr > size)
+            break;
+        jacob.push_back(curr);
+        prev2 = prev1;
+        prev1 = curr;
         ++index;
     }
+
     return jacob;
 }
+
 
 void PmergeSort::editIndices(std::vector<int>& jacob, std::vector<int> pend) {
     std::vector<int> temp, pushed;
@@ -282,13 +312,32 @@ void PmergeSort::run(char** av, std::deque<int>& data) {
     data = recursiveSort(data);
 }
 
+// std::deque<int> PmergeSort::generateJacobIndicesDeque(int size) {
+//     std::deque<int> jacob;
+//     int index = 3;
+//     while (JacobsthalSequence(index) <= size) {
+//         jacob.push_back(JacobsthalSequence(index));
+//         ++index;
+//     }
+//     return jacob;
+// }
+
 std::deque<int> PmergeSort::generateJacobIndicesDeque(int size) {
     std::deque<int> jacob;
-    int index = 3;
-    while (generateJacobsthal(index) <= size) {
-        jacob.push_back(generateJacobsthal(index));
+    int prev2 = 0, prev1 = 1, curr = 0;
+    int index = 2;
+
+    // Start from index = 3, so precompute the first two
+    while (true) {
+        curr = prev1 + 2 * prev2;
+        if (curr > size)
+            break;
+        jacob.push_back(curr);
+        prev2 = prev1;
+        prev1 = curr;
         ++index;
     }
+
     return jacob;
 }
 

@@ -19,7 +19,7 @@ public:
     static void run(char** av, std::deque<int>& data);
 
 private:
-    static int generateJacobsthal(int n);
+    static int JacobsthalSequence(int n);
 
     // Vector versions
     static std::vector<int> recursiveSort(std::vector<int>& data);
